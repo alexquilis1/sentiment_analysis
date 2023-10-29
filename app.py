@@ -1,3 +1,4 @@
+from flask import Flask, render_template, request
 from newsapi.newsapi_client import NewsApiClient
 from config import API_KEY
 
@@ -11,6 +12,47 @@ import string
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk import word_tokenize, FreqDist
+
+app = Flask(__name)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/consultar_noticias', methods=['POST'])
+def consultar_noticias():
+    user_topic = request.form['user_topic']
+
+    # Crea una instancia de la API de News
+    newsapi = NewsApiClient(api_key=API_KEY)
+
+    # Llamar a la API de News y procesar los datos
+    all_articles = newsapi.get_everything(q=user_topic, language='en', sort_by='relevancy')
+    df = pd.DataFrame(all_articles['articles'])
+
+    # Realizar el análisis de sentimiento
+    analyzer = SentimentIntensityAnalyzer()
+    df['content'] = df['content'].apply(preprocess_text)
+    df['content_sentiment'] = df['content'].apply(get_sentiment)
+
+    # Filtrar noticias por sentimiento
+    positive_df = df[df['content_sentiment'] == 'positive']
+    negative_df = df[df['content_sentiment'] == 'negative']
+    neutral_df = df[df['content_sentiment'] == 'neutral']
+
+    # Crear gráficos y visualizaciones
+    wordcloud_positive = create_wordcloud(positive_df, 'Positive Sentiment')
+    wordcloud_negative = create_wordcloud(negative_df, 'Negative Sentiment')
+    wordcloud_neutral = create_wordcloud(neutral_df, 'Neutral Sentiment')
+
+    # Crear un gráfico de barras para mostrar la distribución de sentimientos
+    sentiment_counts = df['content_sentiment'].value_counts()
+    sentiments = sentiment_counts.index
+    count = sentiment_counts.values
+
+    return render_template('result.html', user_topic=user_topic, sentiments=sentiments, count=count, 
+                           wordcloud_positive=wordcloud_positive, wordcloud_negative=wordcloud_negative, 
+                           wordcloud_neutral=wordcloud_neutral)
 
 def preprocess_text(text):
     # Convertir a minúsculas
@@ -53,49 +95,7 @@ def get_sentiment(text):
 def create_wordcloud(dataframe, title, subplot):
     all_text = ' '.join(dataframe['content'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_text)
-
-    subplot.imshow(wordcloud, interpolation='bilinear')
-    subplot.axis('off')
-    subplot.set_title(title)
-
-def main(user_topic):
-    # Crear una instancia de la API de News
-    newsapi = NewsApiClient(api_key=API_KEY)
-
-    # Llamar a la API de News y procesar los datos
-    all_articles = newsapi.get_everything(q=user_topic, language='en', sort_by='relevancy')
-    df = pd.DataFrame(all_articles['articles'])
-
-    # Realizar el análisis de sentimiento
-    analyzer = SentimentIntensityAnalyzer()
-    df['content'] = df['content'].apply(preprocess_text)
-    df['content_sentiment'] = df['content'].apply(get_sentiment)
-
-    # Filtrar noticias por sentimiento
-    positive_df = df[df['content_sentiment'] == 'positive']
-    negative_df = df[df['content_sentiment'] == 'negative']
-    neutral_df = df[df['content_sentiment'] == 'neutral']
-
-    # Crear gráficos y visualizaciones
-    fig, axs = plt.subplots(1, 3, figsize=(20, 20))
-    plt.subplots_adjust(wspace=0.2)
-    create_wordcloud(positive_df, 'Positive Sentiment', axs[0])
-    create_wordcloud(negative_df, 'Negative Sentiment', axs[1])
-    create_wordcloud(neutral_df, 'Neutral Sentiment', axs[2])
-
-    plt.show()
-
-    # Crear un gráfico de barras para mostrar la distribución de sentimientos
-    sentiment_counts = df['content_sentiment'].value_counts()
-    sentiments = sentiment_counts.index
-    count = sentiment_counts.values
-
-    plt.bar(sentiments, count)
-    plt.xlabel('Sentimiento')
-    plt.ylabel('Conteo')
-    plt.title('Distribución de Sentimiento en las Noticias (Contenido)')
-    plt.show()
-
+    return wordcloud
+    
 if __name__ == '__main__':
-    user_topic = input('Por favor, ingresa un tema:')
-    main(user_topic)
+    app.run(debug=True)
