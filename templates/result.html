@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados de Consulta de Noticias</title>
+</head>
+<body>
+    <h1>Resultados de Consulta de Noticias</h1>
+    <p>Tema consultado: {{ user_topic }}</p>
+    <h2>Distribución de Sentimientos</h2>
+    <ul>
+        <li>Positivo: {{ count[0] }} noticias</li>
+        <li>Negativo: {{ count[1] }} noticias</li>
+        <li>Neutral: {{ count[2] }} noticias</li>
+    </ul>
+    <h2>Nubes de Palabras</h2>
+    <h3>Palabras Positivas</h3>
+    <img src="{{ wordcloud_positive }}" alt="Word Cloud Positive Sentiment">
+    <h3>Palabras Negativas</h3>
+    <img src="{{ wordcloud_negative }}" alt="Word Cloud Negative Sentiment">
+    <h3>Palabras Neutrales</h3>
+    <img src="{{ wordcloud_neutral }}" alt="Word Cloud Neutral Sentiment">
+</body>
+</html>
