@@ -13,7 +13,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk import word_tokenize, FreqDist
 
-app = Flask(__name)
+app = Flask(__name__)
 
 @app.route('/')
 def index():
