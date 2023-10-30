@@ -8,6 +8,9 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import re
 import string
+import base64
+from PIL import Image
+from io import BytesIO
 
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -118,9 +121,18 @@ def get_sentiment(text):
 def create_wordcloud(dataframe, title):
     all_text = ' '.join(dataframe['content'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_text)
-    image_path = f'static/{title}.png' # Guarada la imagen en un directorio static
-    wordcloud.to_file(image_path) #Guarda el WordCloud como una imagen
-    return image_path
+    
+    # Genera la imagen como un objeto BytesIO
+    img_buffer = BytesIO()
+    wordcloud.to_image().save(img_buffer, format="PNG")
+    
+    # Convierte el búfer de bytes en bytes
+    img_bytes = img_buffer.getvalue()
+
+    # Convierte la imagen en base64
+    image_base64 = base64.b64encode(img_bytes).decode('utf8')
+    
+    return image_base64
     
 if __name__ == '__main__':
     app.run(debug=True)
