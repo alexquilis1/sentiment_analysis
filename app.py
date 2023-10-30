@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from newsapi.newsapi_client import NewsApiClient
 from config import API_KEY
 
@@ -18,6 +18,10 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
 
 @app.route('/consultar_noticias', methods=['POST'])
 def consultar_noticias():
@@ -95,7 +99,9 @@ def get_sentiment(text):
 def create_wordcloud(dataframe, title):
     all_text = ' '.join(dataframe['content'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_text)
-    return wordcloud
+    image_path = f'static/{title}.png' # Guarada la imagen en un directorio static
+    wordcloud.to_file(image_path) #Guarda el WordCloud como una imagen
+    return image_path
     
 if __name__ == '__main__':
     app.run(debug=True)
