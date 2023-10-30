@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Consulta de Noticias y Análisis de Sentimiento</title>
+    <title>Análisis de Sentimientos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Consulta de Noticias</h1>
-    <form action="/consultar_noticias" method="post">
-        <label for="user_topic">Ingresa un tema:</label>
-        <input type="text" name="user_topic" required>
-        <input type="submit" value="Consultar Noticias">
-    </form>
+    <div class="container">
+        <h1 class="mt-5">Análisis de Sentimientos</h1>
+        <form action="/consultar_noticias" method="post" class="mt-4">
+            <div class="input-group">
+                <input type="text" class="form-control" name="user_topic" placeholder="Ingresa un tema" required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Consultar Noticias</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

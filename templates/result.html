@@ -2,22 +2,46 @@
 <html>
 <head>
     <title>Resultados de Consulta de Noticias</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Agrega estilos personalizados aquí si es necesario */
+    </style>
 </head>
 <body>
-    <h1>Resultados de Consulta de Noticias</h1>
-    <p>Tema consultado: {{ user_topic }}</p>
-    <h2>Distribución de Sentimientos</h2>
-    <ul>
-        <li>Positivo: {{ count[0] }} noticias</li>
-        <li>Negativo: {{ count[1] }} noticias</li>
-        <li>Neutral: {{ count[2] }} noticias</li>
-    </ul>
-    <h2>Nubes de Palabras</h2>
-    <h3>Palabras Positivas</h3>
-    <img src="{{ wordcloud_positive }}" alt="Word Cloud Positive Sentiment">
-    <h3>Palabras Negativas</h3>
-    <img src="{{ wordcloud_negative }}" alt="Word Cloud Negative Sentiment">
-    <h3>Palabras Neutrales</h3>
-    <img src="{{ wordcloud_neutral }}" alt="Word Cloud Neutral Sentiment">    
+    <div class="container">
+        <h1 class="mt-5">Resultados de Consulta de Noticias</h1>
+        <p class="mt-3">Tema consultado: {{ user_topic }}</p>
+
+        <div class="mt-4">
+            <h2>Distribución de Sentimientos</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Positivo: {{ count[0] }} noticias</li>
+                <li class="list-group-item">Negativo: {{ count[1] }} noticias</li>
+                <li class="list-group-item">Neutral: {{ count[2] }} noticias</li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <h2>Nubes de Palabras</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Palabras Positivas</h3>
+                    <img src="{{ wordcloud_positive }}" alt="Word Cloud Positive Sentiment" class="img-fluid">
+                </div>
+                <div class="col-md-4">
+                    <h3>Palabras Negativas</h3>
+                    <img src="{{ wordcloud_negative }}" alt="Word Cloud Negative Sentiment" class="img-fluid">
+                </div>
+                <div class="col-md-4">
+                    <h3>Palabras Neutrales</h3>
+                    <img src="{{ wordcloud_neutral }}" alt="Word Cloud Neutral Sentiment" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
