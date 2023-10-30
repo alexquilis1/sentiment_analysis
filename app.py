@@ -92,7 +92,7 @@ def get_sentiment(text):
     else:
         return 'neutral'
 
-def create_wordcloud(dataframe, title, subplot):
+def create_wordcloud(dataframe, title):
     all_text = ' '.join(dataframe['content'])
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_text)
     return wordcloud
