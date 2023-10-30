@@ -58,6 +58,25 @@ def consultar_noticias():
                            wordcloud_positive=wordcloud_positive, wordcloud_negative=wordcloud_negative, 
                            wordcloud_neutral=wordcloud_neutral)
 
+# Manejo de errores 404 (Recurso no encontrado)
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+# Manejo de errores 500 (Error interno del servidor)
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('500.html'), 500
+
+# Manejo de otros errores personalizados
+@app.errorhandler(Exception)
+def handle_exception(error):
+    # Loguea el error o realiza otras acciones necesarios
+    app.logger.error(f'Error inesperado: {error}')
+
+    # Devuelve una página de error personalizada al usuario
+    return render_template('error.html', error_message='Ocurrió un error inesperado.'), 500
+
 def preprocess_text(text):
     # Convertir a minúsculas
     text = text.lower()
