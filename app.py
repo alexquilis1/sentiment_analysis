@@ -22,10 +22,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return send_from_directory('static', filename)
-
 @app.route('/consultar_noticias', methods=['POST'])
 def consultar_noticias():
     user_topic = request.form['user_topic']
