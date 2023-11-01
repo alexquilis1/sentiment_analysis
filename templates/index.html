@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Análisis de Sentimientos</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Sentiment Analysis</title>   <!-- Title of the web page -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    <!-- Link to Bootstrap CSS -->
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Análisis de Sentimientos</h1>
-        <form action="/consultar_noticias" method="post" class="mt-4">
+        <h1 class="mt-5">Sentiment Analysis</h1>    <!-- Heading 'Sentiment Analysis' -->
+        <form action="/query_articles" method="post" class="mt-4">  <!-- Form for user input with method "post" and action "/consultar_noticias" -->
             <div class="input-group">
-                <input type="text" class="form-control" name="user_topic" placeholder="Ingresa un tema" required>
+                <input type="text" class="form-control" name="user_topic" placeholder="Enter a topic" required>
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary">Consultar Noticias</button>
+                    <button type="submit" class="btn btn-primary">Start analysis</button>   <!-- Submit button -->
                 </div>
             </div>
         </form>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    <!-- Include jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>   <!-- Include Popper.js library -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> <!-- Include Bootstrap Javascript library -->
 </body>
 </html>
