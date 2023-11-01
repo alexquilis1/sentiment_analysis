@@ -17,3 +17,32 @@ This is a simple web application for performing sentiment analysis on news artic
 - NLTK (Natural Language Toolkit): For text preprocessing and sentiment analysis.
 - VADER SentimentIntensityAnalyzer: Used to perform sentiment analysis.
 - WordCloud: To generate word clouds.
+
+## Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/alexquilis1/sentiment_analysis.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd sentiment_analysis
+   ```
+3. Installad the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Add your News API key to the 'config.py' file.
+
+## Usage
+1. Run the application:
+   ```
+    python app.py
+   ```
+3. Open a web browser and go to http://localhost:5000/ to access the app.
+4. Enter a topic of interest, and the app will retrieve news articles and perform sentiment analysis.
+
+## Contributing
+Contributions are welcome! If you have any suggestions or improvements, please create an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
