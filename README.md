@@ -45,4 +45,4 @@ This is a simple web application for performing sentiment analysis on news artic
 Contributions are welcome! If you have any suggestions or improvements, please create an issue or submit a pull request.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details.
