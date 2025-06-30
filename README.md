@@ -46,7 +46,7 @@ Perfect for understanding public sentiment on current events, trending topics, o
 1. **Clone the repository**
    ```bash
    git clone https://github.com/alexquilis1/news-sentiment-analyzer.git
-   cd sentiment_analysis
+   cd news-sentiment-analyzer
    ```
 
 2. **Install dependencies**
@@ -101,7 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Alex Quilis** - [alexquilis1](https://github.com/alexquilis1)
+**Alex Quilis** - *Initial work* - [alexquilis1](https://github.com/alexquilis1)
 
 ---
 
