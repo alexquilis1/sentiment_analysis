@@ -1,48 +1,108 @@
-# Sentiment Analysis Web App
+# 📊 News Sentiment Analysis Web App
 
-This is a simple web application for performing sentiment analysis on news articles. Users can enter a topic of interest, and the app fetches related news articles, analyzes their sentiment, and displays the results including word clouds for different sentiments.
+> A Flask-powered web application that analyzes sentiment in news articles and generates beautiful word clouds to visualize emotional trends in current events.
 
-## Features
+![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)
+![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-- **User Input**: Users can enter a topic of interest.
-- **Data Retrieval**: The app fetches news articles related to the user's topic using the News API.
-- **Sentiment Analysis**: Sentiment analysis is performed on the content of the articles.
-- **Visualization**: The app displays the distribution of sentiments and word clouds for positive, negative, and neutral sentiments.
-- **Preprocessing**: Text data is preprocessed to remove HTML tags, URLs, punctuation, and stopwords.
+## 🎯 What it does
 
-## Technologies Used
+This web app takes any topic you're curious about and:
+- 🔍 Fetches the latest news articles from across the web
+- 🧠 Analyzes the emotional tone of each article
+- 📈 Shows you whether the coverage is positive, negative, or neutral
+- ☁️ Creates stunning word clouds to visualize the most common terms
 
-- Flask: A Python web framework for building web applications.
-- News API: Used for fetching news articles.
-- NLTK (Natural Language Toolkit): For text preprocessing and sentiment analysis.
-- VADER SentimentIntensityAnalyzer: Used to perform sentiment analysis.
-- WordCloud: To generate word clouds.
+Perfect for understanding public sentiment on current events, trending topics, or any subject you're researching!
 
-## Installation
-1. Clone this repository:
+## ✨ Features
+
+- **🔎 Smart Topic Search** - Enter any keyword and get relevant news articles
+- **😊😐😞 Sentiment Classification** - Automatic categorization into positive, negative, and neutral
+- **📊 Visual Analytics** - Beautiful charts showing sentiment distribution  
+- **☁️ Word Cloud Generation** - Separate word clouds for each sentiment category
+- **🧹 Intelligent Text Processing** - Removes noise, URLs, and irrelevant content
+- **🌐 Real-time Data** - Fresh news articles from the News API
+
+## 🛠️ Built With
+
+- **[Flask](https://flask.palletsprojects.com/)** - Lightweight Python web framework
+- **[News API](https://newsapi.org/)** - Real-time news data source
+- **[NLTK](https://www.nltk.org/)** - Natural language processing toolkit
+- **[VADER Sentiment](https://github.com/cjhutto/vaderSentiment)** - Lexicon-based sentiment analysis
+- **[WordCloud](https://github.com/amueller/word_cloud)** - Word cloud generation
+- **[Pandas](https://pandas.pydata.org/)** - Data manipulation and analysis
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.7 or higher
+- A [News API key](https://newsapi.org/register) (free tier available)
+
+### Installation
+
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/alexquilis1/sentiment_analysis.git
-   ```
-2. Navigate to the project directory:
-   ```bash
+   git clone https://github.com/alexquilis1/news-sentiment-analyzer.git
    cd sentiment_analysis
    ```
-3. Installad the required dependencies:
+
+2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
-4. Add your News API key to the 'config.py' file.
 
-## Usage
-1. Run the application:
+3. **Set up your API key**
+   
+   Create a `config.py` file in the project root:
+   ```python
+   API_KEY = "your_news_api_key_here"
    ```
-    python app.py
+
+4. **Download NLTK data** (first time only)
+   ```python
+   import nltk
+   nltk.download('punkt')
+   nltk.download('stopwords')
+   nltk.download('wordnet')
    ```
-3. Open a web browser and go to http://localhost:5000/ to access the app.
-4. Enter a topic of interest, and the app will retrieve news articles and perform sentiment analysis.
 
-## Contributing
-Contributions are welcome! If you have any suggestions or improvements, please create an issue or submit a pull request.
+### Usage
 
-## License
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details.
+1. **Start the application**
+   ```bash
+   python app.py
+   ```
+
+2. **Open your browser** and navigate to `http://localhost:5000`
+
+3. **Enter a topic** (e.g., "climate change", "artificial intelligence", "olympics")
+
+4. **Explore the results** - View sentiment distribution and word clouds!
+
+## 🎓 What I Learned
+
+This was one of my early Python projects where I explored:
+- Web development with Flask
+- Natural language processing techniques
+- Data visualization and web scraping
+- API integration and data manipulation
+- Text preprocessing and sentiment analysis algorithms
+
+## 🤝 Contributing
+
+Feel free to dive in! [Open an issue](https://github.com/alexquilis1/news-sentiment-analyzer/issues) or submit a pull request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Alex Quilis** - [alexquilis1](https://github.com/alexquilis1)
+
+---
+
+⭐ **Enjoyed this project?** Give it a star to show your support!
